@@ -47,7 +47,7 @@ EOF
 		echo "[$DATE: EXTERNAL_IP] $TEMP_EXTERNAL_IP to $EXTERNAL_IP" > $LOG_FILE
 		echo $EXTERNAL_IP > $EXTERNAL_IP_FILE
 		echo "IPs not match"
-		echo $IPADDRESS_STRING > $1
+		echo "$IPADDRESS_STRING" > $1
 		git commit -a -m "DNS updater"
 		git push origin
 	fi
