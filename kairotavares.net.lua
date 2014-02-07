@@ -3,7 +3,7 @@
 -- _a = "example.com"
 
 -- A Records
-a(_a, "201.9.70.20")
+a(_a, "201.4.220.35")
 
 -- CNAME Records
 cname("www", _a)
