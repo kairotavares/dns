@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #Constants
-EXTERNAL_IP_FILE=eip.tmp
-LOG_FILE=ipchanges.log
+EXTERNAL_IP_FILE=/tmp/eip.tmp
+LOG_FILE=/var/log/dns_updater.log
 SLEEP_TIME=1m
 DNS_FILE=$1
 
