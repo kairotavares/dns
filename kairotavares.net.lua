@@ -1,5 +1,5 @@
 		-- A Records
-		a(_a, "[1]")
+		a(_a, "201.4.220.35")
 
 		-- CNAME Records
 		cname("www", _a)

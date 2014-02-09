@@ -32,7 +32,7 @@ echo "Finding external ip..."
 
 for i in `seq 0 1`
 do
-	EXTERNAL_IP="$EXTERNAL_IP_CMDS[$i]"
+	EXTERNAL_IP="${EXTERNAL_IP_CMDS[$i]}"
 	L_EXTERNAL_IP=$(echo "${#EXTERNAL_IP}")
 
 	if [L_EXTERNAL_IP -ge 15 ]; then
