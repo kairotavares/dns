@@ -23,16 +23,17 @@ while [ 1 ]; do
 DATE=$(date)
 EXTERNAL_IP=""
 
-EXTERNAL_IP_1=$(curl ipecho.net/plain)
-EXTERNAL_IP_2=$(curl ifconfig.me)
+EXTERNAL_IP_CMDS[0]=$(curl ipecho.net/plain)
+EXTERNAL_IP_CMDS[1]=$(curl ifconfig.me)
 
 FOUNDED=0
 	
 echo "Finding external ip..."
 
-for i in `seq 1 2`
+for i in `seq 0 1`
 do
-	EXTERNAL_IP = EXTERNAL_IP_$i
+	EXTERNAL_IP=\${EXTERNAL_IP_CMDS${i}}
+	L_EXTERNAL_IP=$(echo "${#EXTERNAL_IP}")
 
 	if [L_EXTERNAL_IP -ge 15 ]; then
 		echo "Error getting EXTERNAL IP"	
@@ -42,7 +43,7 @@ do
 	fi			
 done
 
-L_EXTERNAL_IP=$(echo "${#EXTERNAL_IP}")
+
 TEMP_EXTERNAL_IP=$(cat $EXTERNAL_IP_FILE)
 
 IPADDRESS_STRING=$(cat <<EOF
@@ -76,7 +77,7 @@ EOF
 			echo "[$DATE: EXTERNAL_IP] $TEMP_EXTERNAL_IP to $EXTERNAL_IP" > $LOG_FILE
 			echo $EXTERNAL_IP > $EXTERNAL_IP_FILE
 			echo "IPs not match"
-			echo $IPADDRESS_STRING > $1
+			echo "$IPADDRESS_STRING" > $1
 			git commit -a -m "DNS updater"
 			git push origin
 		fi
