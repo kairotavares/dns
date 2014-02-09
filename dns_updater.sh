@@ -32,7 +32,7 @@ echo "Finding external ip..."
 
 for i in `seq 0 1`
 do
-	EXTERNAL_IP=\${EXTERNAL_IP_CMDS${i}}
+	EXTERNAL_IP="$EXTERNAL_IP_CMDS[$i]"
 	L_EXTERNAL_IP=$(echo "${#EXTERNAL_IP}")
 
 	if [L_EXTERNAL_IP -ge 15 ]; then
@@ -44,7 +44,6 @@ do
 done
 
 
-TEMP_EXTERNAL_IP=$(cat $EXTERNAL_IP_FILE)
 
 IPADDRESS_STRING=$(cat <<EOF
 		-- A Records
@@ -58,6 +57,7 @@ IPADDRESS_STRING=$(cat <<EOF
 EOF
 )
 
+FOUNDED=0
 	if [ $FOUNDED ]; then	
 
 		if [ -e $EXTERNAL_IP_FILE ]
@@ -67,6 +67,8 @@ EOF
 			echo "0.0.0.0" > $EXTERNAL_IP_FILE
 			echo "$EXTERNAL_IP_FILE created"
 		fi
+		
+		TEMP_EXTERNAL_IP=$(cat $EXTERNAL_IP_FILE)
 
 		echo "Previous IP: $TEMP_EXTERNAL_IP"
 
