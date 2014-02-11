@@ -3,7 +3,7 @@
 #Constants
 EXTERNAL_IP_FILE=eip.tmp
 LOG_FILE=ipchanges.log
-SLEEP_TIME=1m
+SLEEP_TIME=1h
 DNS_FILE=$1
 
 
@@ -40,6 +40,7 @@ do
 	else		
 		FOUNDED=1
 		echo "Founded external ip: $EXTERNAL_IP"
+		break
 	fi			
 done
 
